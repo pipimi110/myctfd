@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>CTFd</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../static/img/favicon.ico?d=a3e973b9" type="image/x-icon">
+    <link rel="stylesheet" href="../static/css/fonts.min.css?d=a3e973b9">
+    <link rel="stylesheet" href="../static/css/main.min.css?d=a3e973b9">
+    <link rel="stylesheet" href="../static/css/core.min.css?d=a3e973b9">
+    {% block stylesheets %}
+    {% endblock %}
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a href="/" class="navbar-brand">
+                CTFd
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#base-navbars"
+                aria-controls="base-navbars" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="base-navbars">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/users">Users</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/teams">Teams</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/scoreboard">Scoreboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/challenges">Challenges</a>
+                    </li>
+                </ul>
+                <hr class="d-sm-flex d-md-flex d-lg-none">
+                <ul class="navbar-nav ml-md-auto d-block d-sm-flex d-md-flex">
+                    {%if user%}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">
+                            <span class="d-block" data-toggle="tooltip" data-placement="bottom" title="Login">
+                                <i class="fas fa-sign-in-alt d-none d-md-block d-lg-none"></i>
+                            </span>
+                            <span class="d-sm-block d-md-none d-lg-block">
+                                <i class="fas fa-sign-in-alt pr-1"></i>Logout
+                            </span>
+                        </a>
+                    </li>
+                    {%else%}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/register">
+                            <span class="d-block" data-toggle="tooltip" data-placement="bottom" title="Register">
+                                <i class="fas fa-user-plus d-none d-md-block d-lg-none"></i>
+                            </span>
+                            <span class="d-sm-block d-md-none d-lg-block">
+                                <i class="fas fa-user-plus pr-1"></i>Register
+                            </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">
+                            <span class="d-block" data-toggle="tooltip" data-placement="bottom" title="Login">
+                                <i class="fas fa-sign-in-alt d-none d-md-block d-lg-none"></i>
+                            </span>
+                            <span class="d-sm-block d-md-none d-lg-block">
+                                <i class="fas fa-sign-in-alt pr-1"></i>Login
+                            </span>
+                        </a>
+                    </li>
+                    {%endif%}
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <main role="main">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+        <div class="container text-center">
+            <a href="https://ctfd.io" class="text-secondary">
+                <small class="text-muted">Powered by CTFd</small>
+            </a>
+        </div>
+    </footer>
+    <script defer src="../static/js/vendor.bundle.min.js?d=a3e973b9"
+        type="6e7b56e1449b5a98b52fde7a-text/javascript"></script>
+    <script defer src="../static/js/core.min.js?d=a3e973b9" type="6e7b56e1449b5a98b52fde7a-text/javascript"></script>
+    <script defer src="../static/js/helpers.min.js?d=a3e973b9" type="6e7b56e1449b5a98b52fde7a-text/javascript"></script>
+    <script defer src="../static/js/pages/main.min.js?d=a3e973b9" type="6e7b56e1449b5a98b52fde7a-text/javascript"></script>
+
+    {% block entrypoint %}
+    {% endblock %}
+    
+    {% block scripts %}
+    {% endblock %}
+    <!-- <script src="/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" -->
+        <!-- data-cf-settings="6e7b56e1449b5a98b52fde7a-|49" defer=""></script> -->
+</body>
+
+</html>
