@@ -28,8 +28,6 @@ from challenges import _challenges
 app.register_blueprint(_challenges)
 
 
-
-
 @app.route('/logout')
 def logout():
     if(session.get('user') is not None):
