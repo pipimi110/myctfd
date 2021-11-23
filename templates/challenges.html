@@ -1,5 +1,9 @@
-{% extends "base.html" %}
+{% extends "base.html" %} 
 
+{% block stylesheets %}
+<!-- <link rel="stylesheet" href="../static/css/1.css">  -->
+<link rel="stylesheet" href="../static/css/challenge-board.min.css"> 
+{% endblock %} 
 
 {% block content %}
 <div class="jumbotron">
@@ -19,11 +23,40 @@
     </div>
 
     <div id='challenges-board'>
-        <div class="min-vh-50 d-flex align-items-center">
+        <!-- <div class="min-vh-50 d-flex align-items-center">
             <div class="text-center w-100">
                 <i class="fas fa-circle-notch fa-spin fa-3x fa-fw spinner"></i>
             </div>
+        </div> -->
+        {% for key in category %}
+        <div class="category-header col-md-12 mb-3">
+            <h3>{{key}}</h3>
         </div>
+        <div class="category-challenges col-md-12">
+            {% for challenge in category[key] %}
+            <div id=triggerBtn-{{challenge.id}} class="col-md-3 d-inline-block tag-密码学">
+                <button class="btn btn-dark challenge-button w-100 text-truncate pt-3 pb-3 mb-2" value="2">
+                    <p>{{challenge.name}}</p><span>{{challenge.value}}</span>
+                </button>
+            </div>
+            {% include "challenge.html" with context %} 
+            {% endfor %}
+        </div>
+        {% endfor %}
+        <!-- 触发按钮 -->
+        <button id="triggerBtn">模态框</button>
+        <!-- 模态框 -->
+        <!-- <div class='popko'>test</div>
+            <div id="myModal" class="modal123">
+                <div class="modal-content123">
+                    qwe
+                </div>
+            </div> -->
     </div>
 </div>
+{% endblock %} 
+{% block entrypoint %}
+<script defer src="../static/js/pages/challenges.min.js?d=a3e973b9"></script>
+<script defer src="../static/js/pages/1.js"></script>
+<!-- <script defer src="https://cdn.jsdelivr.net/gh/CTFshow/platform@bf326a9/pages/static/js/pages/challenges.min.js"></script> -->
 {% endblock %}

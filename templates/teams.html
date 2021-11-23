@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="jumbotron">
+    <div class="container">
+        <h1>Teams</h1>
+    </div>
+</div>
+<div class="container">
+    {% include "components/errors.html" %}
+
+    <!-- <div id="score-graph" class="row d-flex align-items-center">
+        <div class="col-md-12 text-center">
+            <i class="fas fa-circle-notch fa-spin fa-3x fa-fw spinner"></i>
+        </div>
+    </div> -->
+    <div class="col-md-12">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <td><b>Team</b></td>
+                    <td><b>Website</b></td>
+                    <td class="d-none d-md-table-cell d-lg-table-cell"><b>Affiliation</b></td>
+                    <td class="d-none d-md-table-cell d-lg-table-cell"><b>Country</b></td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for team in teams %}
+                <tr>
+                    <td>
+                        <a href="/teams/{{team.id}}">{{team.name}}</a>
+                    </td>
+                    <td class="text-center" style="width: 10px;">
+                        {{team.Website}}
+                    </td>
+                    <td class="d-none d-md-table-cell d-lg-table-cell">
+                        {{team.Affiliation}}
+                    </td>
+                    <td class="d-none d-md-table-cell d-lg-table-cell">
+                        <span>
+                        {{team.Country}}
+                        </span>
+                    </td>
+                </tr>
+                {% endfor %}
+    
+            </tbody>
+        </table>
+    </div>
+
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script defer src="../static/js/echarts.bundle.js"></script>
+{% endblock %}
+
+{% block entrypoint %}
+<script defer src="../static/js/pages/scoreboard.js"></script>
+{% endblock %}

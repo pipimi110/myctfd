@@ -11,9 +11,10 @@ https://www.jianshu.com/p/59b8d17b889f
 ## 数据表（待完善）
 
 ```
-team(队伍)(id,name,token,得分,解题状态)
+team(队伍)(id,name,token,得分,解题状态,排名)
 teammate(队伍成员)(id,name,password,得分)
 challenge(题目)(id,描述（包括链接），类别，hint，分数,解题人数)
+方向(类名,题目id)
 ```
 
 ## 功能（待完善）
@@ -50,6 +51,21 @@ wp汇总
     <!-- 导入footer.html -->
     {% include 'footer.html' %}
 </body>
+```
+
+with context(将for传入include)
+
+http://docs.jinkan.org/docs/jinja2/templates.html
+
+```html
+        {% for challenge in challenges %}
+        <div id=triggerBtn-{{challenge.id}} class="col-md-3 d-inline-block tag-密码学">
+            <button class="btn btn-dark challenge-button w-100 text-truncate pt-3 pb-3 mb-2" value="2">
+                <p>{{challenge.name}}</p><span>{{challenge.value}}</span>
+            </button>
+        </div>
+        {% include "challenge.html" with context %} 
+        {% endfor %}
 ```
 
 
@@ -133,6 +149,46 @@ login.py
 def login():
     if auth():
         return redirect(url_for('index.index'))#Blueprint名.函数名
+```
+
+#### challenges.html
+
+challenge.html
+
+```
+删除 max_attempts
+没找到{% block solves %}的模板
+```
+
+模态框
+
+```
+
+```
+
+id模糊匹配
+
+```
+document.querySelector('[id^="triggerBtn"]');//triggerBtn-1 (challengeid)
+querySelectorAll
+```
+
+获取子节点
+
+https://blog.csdn.net/laok_/article/details/75760572
+
+#### scoreboard.html
+
+```
+删除 score-graph
+删除 翻页
+```
+
+#### todo:
+
+```
+搜索功能
+新建功能
 ```
 
 

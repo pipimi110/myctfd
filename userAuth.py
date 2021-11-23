@@ -1,11 +1,17 @@
 from flask import Blueprint, redirect, url_for, render_template, session, request, flash
-from utils import auth
 # from app import app
 
-_login = Blueprint('login', __name__)
+def auth():
+    if session.get('user') is None:
+        return False
+    else:
+        return True
 
 
-@_login.route('/login', methods=['GET', 'POST'])
+_userAuth = Blueprint('userAuth', __name__)
+
+
+@_userAuth.route('/login', methods=['GET', 'POST'])
 def login():
     if auth():
         return redirect(url_for('index.index'))
@@ -21,3 +27,12 @@ def login():
             flash('You were logged in')
             return redirect(url_for('index.index'))
     return render_template('login.html', errors=errors, user=session.get('user'))
+
+
+@_userAuth.route('/logout')
+def logout():
+    if(session.get('user') is not None):
+        session.pop('user', None)
+    return redirect(url_for('userAuth.login'))
+
+

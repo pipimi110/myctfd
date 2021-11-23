@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, url_for, redirect, session
 from flask import flash
 import uuid
 import os
-from utils import auth
+# from utils import auth
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = "upload_folder"
@@ -22,17 +22,16 @@ def hello_world():  # put application's code here
 
 from index import _index
 app.register_blueprint(_index)
-from login import _login
-app.register_blueprint(_login)
+from userAuth import _userAuth
+app.register_blueprint(_userAuth)
 from challenges import _challenges
 app.register_blueprint(_challenges)
-
-
-@app.route('/logout')
-def logout():
-    if(session.get('user') is not None):
-        session.pop('user', None)
-    return redirect(url_for('login.login'))
+from scoreboard import _scoreboard
+app.register_blueprint(_scoreboard)
+from teams import _teams
+app.register_blueprint(_teams)
+from users import _users
+app.register_blueprint(_users)
 
 
 @app.route('/test')
