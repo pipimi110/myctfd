@@ -16,8 +16,10 @@ https://www.jianshu.com/p/59b8d17b889f
 team(队伍) (tid,teamname)
 teammate(队伍成员) (uid,username,password,tid)
 challenge_topics(比赛) (topic_id,cname)
-challenge(比赛题目)(topic_id,cid,value)
-solve(解题情况)(topic_id,uid,score)
+challenge(比赛题目)(cid,topic_id,value)
+solve(个人解题情况)(topic_id,uid,score)
+teamscore(topic_id,tid,solvescore)
+
 
 
 ```
@@ -31,12 +33,20 @@ create table user_info(uid int primary key,username char(20) unique,password cha
 
 create table challenge_topics(topic_id int primary key,cname char(20));
 
-create table challenge(topic_id int primary key,cid int,value int,foreign key(topic_id) references challenge_topics(topic_id));
+create table challenge(cid int primary key,topic_id int,value int,foreign key(topic_id) references challenge_topics(topic_id));
 
-create table solve(topic_id int primary key,uid int,score int);
+create table solve(topic_id int,uid int,score int,primary key(topic_id,uid),foreign key(topic_id) references challenge_topics(topic_id),foreign key(uid) references user_info(uid));
 
+//select value from challenge where topic_id='' and cid ='';
+//insert into solve value(value,topic_id,uid)
 
+create table teamscore(topic_id int,tid int,uid int,solvecore int,primary key(topic_id,tid));
+
+//select score from solve where (select uid from teammate where tid='');
+//insert into teamscore value(topic_id,tid,score)
+//update teamscore set score='' where tid='';
 ```
+
 
 
 
