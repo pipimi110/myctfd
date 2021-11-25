@@ -10,12 +10,35 @@ https://www.jianshu.com/p/59b8d17b889f
 
 ## 数据表（待完善）
 
+库
+
 ```
-team(队伍)(id,name,token,得分,解题状态,排名)
-teammate(队伍成员)(id,name,password,得分)
-challenge(题目)(id,描述（包括链接），类别，hint，分数,解题人数)
-方向(类名,题目id)
+team(队伍) (tid,teamname)
+teammate(队伍成员) (uid,username,password,tid)
+challenge_topics(比赛) (topic_id,cname)
+challenge(比赛题目)(topic_id,cid,value)
+solve(解题情况)(topic_id,uid,score)
+
+
 ```
+
+建库
+
+```
+create table team_info(tid int primary key,teamname char(20) unique);
+
+create table user_info(uid int primary key,username char(20) unique,password char(20) not NULL,tid int,foreign key(tid) references team_info(tid));
+
+create table challenge_topics(topic_id int primary key,cname char(20));
+
+create table challenge(topic_id int primary key,cid int,value int,foreign key(topic_id) references challenge_topics(topic_id));
+
+create table solve(topic_id int primary key,uid int,score int);
+
+
+```
+
+
 
 ## 功能（待完善）
 
