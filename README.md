@@ -17,7 +17,7 @@ team(队伍) (tid,teamname)
 teammate(队伍成员) (uid,username,password,tid)
 challenge_topics(比赛) (topic_id,cname)
 challenge(比赛题目)(cid,topic_id,value)
-solve(个人解题情况)(topic_id,uid,score)
+solve(个人解题情况)(score,topic_id,uid)
 teamscore(topic_id,tid,solvescore)
 
 
@@ -35,17 +35,41 @@ create table challenge_topics(topic_id int primary key,cname char(20));
 
 create table challenge(cid int primary key,topic_id int,value int,foreign key(topic_id) references challenge_topics(topic_id));
 
-create table solve(topic_id int,uid int,score int,primary key(topic_id,uid),foreign key(topic_id) references challenge_topics(topic_id),foreign key(uid) references user_info(uid));
+create table solve(topic_id int,uid int,score int,foreign key(topic_id) references challenge_topics(topic_id),foreign key(uid) references user_info(uid));
 
+create table teamscore(topic_id int,tid int,solvescore int,primary key(topic_id,tid));
+
+
+//写触发器
+个人score更新
+update solve set score = score+500 where uid=1;
+update solve set score = score+(select value from challenge where topic_id='100' and cid=1) where uid=1;
+
+//队伍成绩统计
+update teamscore set solvescore=(select sum(score) from (select score from solve where uid in (select uid from user_info where tid=1))as a) werehere tid=1;
+
+
+
+
+/*create table solve(score int,topic_id int,uid int,primary key(topic_id,uid),foreign key(topic_id) references challenge_topics(topic_id),foreign key(uid) references user_info(uid));
+*/
 //select value from challenge where topic_id='' and cid ='';
-//insert into solve value(value,topic_id,uid)
+//insert into solve values(value,topic_id,uid)
+//update solve set score=score+value where uid=
+//update solve set score = score+(select value from challenge where topic_id='100' and cid=1) where uid=1;
 
-create table teamscore(topic_id int,tid int,uid int,solvecore int,primary key(topic_id,tid));
+//create table teamscore(topic_id int,tid int,uid int,solvecore int,primary key(topic_id,tid));
+
+
+//select score from solve where uid in (select uid from user_info where tid=1);
 
 //select score from solve where (select uid from teammate where tid='');
 //insert into teamscore value(topic_id,tid,score)
 //update teamscore set score='' where tid='';
+
+//insert into 
 ```
+
 
 
 
