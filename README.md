@@ -69,6 +69,39 @@ update teamscore set solvescore=(select sum(score) from (select score from solve
 
 //insert into 
 ```
+数据库测试语句
+
+```
+insert into team_info values(1,'popko');
+insert into team_info values(2,'nopppppppp');
+
+insert into user_info values(1,'pop','poppop',1);
+insert into user_info values(2,'sygg','syggtql',1);
+
+insert into challenge_topics values(100,'FCTF');
+
+insert into challenge values(1,100,200);
+insert into challenge values(2,100,300);
+insert into challenge values(3,100,500);
+
+insert into solve values(100,1,0);
+insert into solve values(100,2,0);
+insert into teamscore values(100,1,0);
+insert into teamscore values(100,2,0);
+
+
+update solve set score = score+(select value from challenge where topic_id='100' and cid=1) where uid=2;
+update solve set score = score+(select value from challenge where topic_id='100' and cid=2) where uid=2;
+update solve set score = score+(select value from challenge where topic_id='100' and cid=3) where uid=1;
+
+update teamscore set solvescore=(select sum(score) from (select score from solve where uid in (select uid from user_info where tid=1))as a) where tid=1;
+
+
+
+```
+
+
+
 
 
 
