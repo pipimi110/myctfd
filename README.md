@@ -80,9 +80,9 @@ insert into user_info values(2,'sygg','syggtql',1);
 
 insert into challenge_topics values(100,'FCTF');
 
-insert into challenge values(1,100,200);
-insert into challenge values(2,100,300);
-insert into challenge values(3,100,500);
+insert into challenge values(1,100,200,'flag{welcome_to_FCTF}');
+insert into challenge values(2,100,300,'flag{you_got_it}');
+insert into challenge values(3,100,500,'flag{easy_rsa}');
 
 insert into solve values(100,1,0);
 insert into solve values(100,2,0);
