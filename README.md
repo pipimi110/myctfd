@@ -33,7 +33,7 @@ create table user_info(uid int primary key,username char(20) unique,password cha
 
 create table challenge_topics(topic_id int primary key,cname char(20));
 
-create table challenge(cid int primary key,topic_id int,value int,foreign key(topic_id) references challenge_topics(topic_id));
+create table challenge(cid int primary key,topic_id int,value int,flag char(40),foreign key(topic_id) references challenge_topics(topic_id));
 
 create table solve(topic_id int,uid int,score int,foreign key(topic_id) references challenge_topics(topic_id),foreign key(uid) references user_info(uid));
 
