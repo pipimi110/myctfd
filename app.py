@@ -1,10 +1,12 @@
+# from db import get_db
 from flask import Flask, render_template, request, url_for, redirect, session
 from flask import flash
 import uuid
 import os
 # from utils import auth
+from models import app
 
-app = Flask(__name__)
+# app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = "upload_folder"
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY') or "popko"
 app.secret_key = uuid.uuid4().bytes
@@ -20,6 +22,13 @@ def hello_world():  # put application's code here
     # return render_template("extendtest.html")
     return redirect("/index")
 
+
+@app.route('/test')
+def test():
+    # print(get_db())
+    return render_template("1test.html")
+
+
 from index import _index
 app.register_blueprint(_index)
 from userAuth import _userAuth
@@ -33,10 +42,6 @@ app.register_blueprint(_teams)
 from users import _users
 app.register_blueprint(_users)
 
-
-@app.route('/test')
-def test():
-    return render_template("1test.html")
 
 if __name__ == '__main__':
     app.run(debug=True)

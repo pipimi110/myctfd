@@ -291,3 +291,44 @@ sqlite3
 import sqlite3
 ```
 
+http://docs.jinkan.org/docs/flask/tutorial/dbcon.html
+
+
+
+> Flask 提供了两种环境（Context）：应用环境（Application Context）和请求环境（Request Context）。暂且你所需了解的是，不同环境有不同的特殊变量。例如 [`request`](http://docs.jinkan.org/docs/flask/api.html#flask.request) 变量与当前请求的请求对象有关， 而 [`g`](http://docs.jinkan.org/docs/flask/api.html#flask.g) 是与当前应用环境有关的通用变量。我们在之后会深入了解它们
+>
+> 可以安全地在 [`g`](http://docs.jinkan.org/docs/flask/api.html#flask.g) 对象存储信息
+>
+> Flask 提供了 [`teardown_appcontext()`](http://docs.jinkan.org/docs/flask/api.html#flask.Flask.teardown_appcontext) 装饰器。它将在每次应用环境销毁时执行
+
+```
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///myctfd.db'
+db = SQLAlchemy(app)
+
+
+class User(db.Model):
+    __tablename__ = "test"
+    uid = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(20), unique=True)
+    password = db.Column(db.String(20), unique=True)
+
+    def __init__(self, username, password):
+        self.username = username
+        self.password = password
+
+    def __repr__(self):
+        return '<User %r>' % self.username
+
+
+# admin = User(uid=1,username='admin', password='123123')
+admin = User(username='admin', password='123123')
+print(db.session)
+print(db.session.add(admin))
+print(db.session.commit())
+print(db)
+```
+
+

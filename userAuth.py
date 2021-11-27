@@ -1,5 +1,7 @@
 from flask import Blueprint, redirect, url_for, render_template, session, request, flash
 # from app import app
+from models import User
+from models import db
 
 def auth():
     if session.get('user') is None:
@@ -20,7 +22,16 @@ def login():
         # print(request.form)
         # if request.form!=None and request.form['username'] != app.config['USERNAME'] or request.form['password'] != app.config['PASSWORD']:
         # if request.form['username'] != app.config['USERNAME'] or request.form['password'] != app.config['PASSWORD']:
-        if request.form['username'] != "admin" or request.form['password'] != "123123":
+        # admin = User(username='admin123', password='qweqwe')
+        # print(db.session)
+        # print(db.session.query(User.username).all())
+        # print(db.session.query(User).filter(User.username == "admin123"))
+        count = (db.session.query(User.username)
+        .filter(User.username ==request.form['username'])
+        .filter(User.password == request.form['password'])
+        .count())
+
+        if count == 0:
             errors.append('Invalid username or password')
         else:
             session['user'] = request.form['username']
