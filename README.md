@@ -331,4 +331,11 @@ print(db.session.commit())
 print(db)
 ```
 
+```
+        count = (db.session.query(User.username)
+        .filter(User.username ==request.form['username'])
+        .filter(User.password == request.form['password'])
+        .count())
+```
+
 

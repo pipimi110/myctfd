@@ -13,6 +13,30 @@ def auth():
 _userAuth = Blueprint('userAuth', __name__)
 
 
+@_userAuth.route('/register', methods=['GET', 'POST'])
+def register():
+    if auth():
+        return redirect(url_for('index.index'))
+    errors = []
+    if request.method == 'POST':
+        name_count = (db.session.query(User.username)
+            .filter(User.username == request.form['username'])
+            .count())
+        email_count = (db.session.query(User.email)
+            .filter(User.email == request.form['email'])
+            .count())
+        if name_count == 0 and email_count == 0:
+            user = User(request.form['username'],request.form['email'],request.form['password'])
+            db.session.add(user)
+            db.session.commit()
+            # return render_template('login.html', errors=errors)
+            return redirect(url_for('userAuth.login'))
+        if name_count == 1:
+            errors.append("That user name is already taken")
+        if email_count == 1:
+            errors.append("That email has already been used")
+    return render_template('register.html', errors=errors)
+
 @_userAuth.route('/login', methods=['GET', 'POST'])
 def login():
     if auth():

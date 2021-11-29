@@ -12,4 +12,4 @@ create table solve(topic_id int,uid int,score int,foreign key(topic_id) referenc
 create table teamscore(topic_id int,tid int,solvescore int,primary key(topic_id,tid));
 
 drop table test;
-create table test(uid int primary key,username char(20),password char(20));
+create table test(uid int primary key,username char(20),password char(20),email char(20));
