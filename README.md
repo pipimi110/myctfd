@@ -27,17 +27,17 @@ teamscore(topic_id,tid,solvescore)
 建库
 
 ```
-create table team_info(tid int primary key,teamname char(20) unique);
+create table team_info(tid int primary key,teamname char(20) unique,website char(20),affiliation char(20),country char(20));
 
-create table user_info(uid int primary key,username char(20) unique,password char(20) not NULL,tid int,foreign key(tid) references team_info(tid));
+create table user_info(uid int primary key,username char(20) unique not NULL,password char(20) not NULL,tid int,foreign key(tid) references team_info(tid));
 
 create table challenge_topics(topic_id int primary key,cname char(20));
 
-create table challenge(cid int primary key,topic_id int,value int,flag char(40),foreign key(topic_id) references challenge_topics(topic_id));
+create table challenge(cid int,topic_id int,value int,flag char(40),primary key(cid,topic_id),foreign key(topic_id) references challenge_topics(topic_id));
 
 create table solve(topic_id int,uid int,score int,foreign key(topic_id) references challenge_topics(topic_id),foreign key(uid) references user_info(uid));
 
-create table teamscore(topic_id int,tid int,solvescore int,primary key(topic_id,tid));
+create table teamscore(topic_id int,tid int,solvescore int,primary key(topic_id,tid),foreign key(tid) references team_info(tid));
 
 
 //写触发器
@@ -72,15 +72,15 @@ update teamscore set solvescore=(select sum(score) from (select score from solve
 数据库测试语句
 
 ```
-insert into team_info values(1,'popko');
-insert into team_info values(2,'nopppppppp');
+insert into team_info values(1,'popko','www.popko.com','popax','C');
+insert into team_info values(2,'nopppppppp','www.popax.com','popax2','D');
 
 insert into user_info values(1,'pop','poppop',1);
 insert into user_info values(2,'sygg','syggtql',1);
 
 insert into challenge_topics values(100,'FCTF');
 
-insert into challenge values(1,100,200,'flag{welcome_to_FCTF}');
+insert into challenge values(1,100,200,'flag{welcome_to_actf}');
 insert into challenge values(2,100,300,'flag{you_got_it}');
 insert into challenge values(3,100,500,'flag{easy_rsa}');
 
