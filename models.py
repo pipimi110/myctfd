@@ -41,6 +41,28 @@ class Team(db.Model):
     def __repr__(self):
         return '<Team %r>' % self.teamname
 
+class Challenge(db.Model):
+    __tablename__ = "challenge"
+    cid = db.Column(db.Integer, primary_key=True)
+    topic_id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(20))
+    category = db.Column(db.String(20))
+    value = db.Column(db.Integer)
+    desc = db.Column(db.String(40))
+    flag = db.Column(db.String(40))
+    solve_count = db.Column(db.Integer)
+
+    def __init__(self, name, category, value, desc, flag):
+        self.name = name
+        self.category = category
+        self.value = value
+        self.desc = desc
+        self.flag = flag
+
+    def __repr__(self):
+        return '<Challenge %r>' % self.name
+
+
 
 # def init_db():
 #     db.create_all()

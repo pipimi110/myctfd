@@ -11,10 +11,23 @@ create table team_info(tid INTEGER primary key autoincrement,teamname char(20) u
 create table user_info(uid INTEGER primary key autoincrement,username char(20) unique not NULL,password char(20) not NULL,tid int,foreign key(tid) references team_info(tid));
 
 create table challenge_topics(topic_id int primary key,cname char(20));
+insert into challenge_topics value(1,"xxxctf");
 
-create table challenge(cid int,topic_id int,value int,flag char(40),primary key(cid,topic_id),foreign key(topic_id) references challenge_topics(topic_id));
+drop table challenge;
+create table challenge(cid int,topic_id int DEFAULT 1,name char(20),category char(20),value int,desc char(40),flag char(40),solve_count int DEFAULT 0,primary key(cid,topic_id),foreign key(topic_id) references challenge_topics(topic_id));
 
-create table solve(topic_id int,uid int,score int,foreign key(topic_id) references challenge_topics(topic_id),foreign key(uid) references user_info(uid));
+
+-- todo:触发器cid自增
+-- insert into challenge(name,category,value,desc,flag) values("web1","Web",100,"do you know ff12","flag{f12_is_easy}");
+insert into challenge(cid,name,category,value,desc,flag) values(1,"web1","Web",100,"do you know ff12","flag{f12_is_easy}");
+insert into challenge(cid,name,category,value,desc,flag) values(2,"web2","Web",100,"do you know ff12","flag{f13_is_easy}");
+insert into challenge(cid,name,category,value,desc,flag) values(3,"web3","Web",100,"do you know ff12","flag{f14_is_easy}");
+insert into challenge(cid,name,category,value,desc,flag) values(4,"signIn","Misc",100,"flag{xxx}","flag{xxx}");
+-- 标记用户做的题目
+-- create table solve(topic_id int,uid int,score int,foreign key(topic_id) references challenge_topics(topic_id),foreign key(uid) references user_info(uid));
+create table solve(topic_id int DEFAULT 1,uid int,cid int,primary key(uid,cid),foreign key(topic_id) references challenge_topics(topic_id),foreign key(uid) references user_info(uid),foreign key(cid) references challenge(cid));
+--- 标记队伍做的题目
+-- create table teamsolve(topic_id int DEFAULT 1,tid int,cid int,foreign key(topic_id) references challenge_topics(topic_id),foreign key(tid) references team_info(tid),foreign key(cid) references challenge(cid));
 
 create table teamscore(topic_id int,tid int,solvescore int,primary key(topic_id,tid),foreign key(tid) references team_info(tid));
 

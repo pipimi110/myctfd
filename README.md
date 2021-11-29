@@ -274,13 +274,6 @@ https://blog.csdn.net/laok_/article/details/75760572
 删除 翻页
 ```
 
-#### todo:
-
-```
-搜索功能
-新建功能
-```
-
 
 
 ### 数据库
@@ -346,6 +339,35 @@ sqlite3 myctfd.db #命令行连接测试
 
 自增
 autoincrement
+
+在sqlite中，只有一个整数列是主键时才会获得自动增量行为。复合键可防止自动增量生效。
+
+create table challenge(cid int auto_increment,topic_id int DEFAULT 1,name char(20),category char(20),value int,desc char(40),flag char(40),primary key(cid,topic_id),foreign key(topic_id) references challenge_topics(topic_id));
 ```
 
 > 用户名模糊查询
+
+#### 触发器
+
+> sqlite中触发器和表(例:solve)绑定,删表后需要重新设置
+
+```
+create trigger addSolves after insert on solve
+begin
+update challenge set solve_count=solve_count+1 where cid=new.cid;
+end;
+
+create trigger addSolves after insert on solve begin update challenge set solve_count=solve_count+1 where cid=new.cid; end;
+```
+
+```
+insert into solve(uid,cid) values(1,2);
+select * from challenge;
+```
+
+
+
+## todo:
+
+
+
