@@ -28,17 +28,17 @@
                 {% for team in teams %}
                 <tr>
                     <td>
-                        <a href="/teams/{{team.id}}">{{team.name}}</a>
+                        <a href="/teams/{{team.tid}}">{{team.teamname}}</a>
                     </td>
                     <td class="text-center" style="width: 10px;">
-                        {{team.Website}}
+                        {{team.website}}
                     </td>
                     <td class="d-none d-md-table-cell d-lg-table-cell">
-                        {{team.Affiliation}}
+                        {{team.affiliation}}
                     </td>
                     <td class="d-none d-md-table-cell d-lg-table-cell">
                         <span>
-                        {{team.Country}}
+                        {{team.country}}
                         </span>
                     </td>
                 </tr>

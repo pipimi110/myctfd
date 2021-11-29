@@ -12,8 +12,8 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link challenge-solves" href="#solves">
-                        {% if solves != None %}
-                        {{ solves }} {% if solves > 1 %}Solves{% else %}Solve{% endif %}
+                        {% if challenge.solve_count != None %}
+                        {{ challenge.solve_count }} {% if challenge.solve_count > 1 %}Solves{% else %}Solve{% endif %}
                         {% endif %}
                     </a>
                 </li>
