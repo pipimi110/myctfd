@@ -338,4 +338,14 @@ print(db)
         .count())
 ```
 
+#### sqlite3使用
 
+```
+sqlite3 myctfd.db < sqlite.sql #导入
+sqlite3 myctfd.db #命令行连接测试
+
+自增
+autoincrement
+```
+
+> 用户名模糊查询

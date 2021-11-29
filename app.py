@@ -33,6 +33,8 @@ from index import _index
 app.register_blueprint(_index)
 from userAuth import _userAuth
 app.register_blueprint(_userAuth)
+from teamAuth import _teamAuth
+app.register_blueprint(_teamAuth)
 from challenges import _challenges
 app.register_blueprint(_challenges)
 from scoreboard import _scoreboard

@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block stylesheets %}
+{% endblock %}
+
+{% block content %}
+<div class="jumbotron">
+    <div class="container">
+        <h1>Create Team</h1>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            {% include "components/errors.html" %}
+
+    <form method="POST">
+        <div class="form-group">
+            <b><label for="name">Team Name</label></b>
+            <input class="form-control" id="teamname" name="teamname" required="" type="text" value="">
+        </div>
+        <div class="form-group">
+            <b><label for="password">Team Password</label></b>
+            <input class="form-control" id="password" name="password" required="" type="password" value="">
+        </div>
+
+
+
+        <div class="row pt-3">
+            <div class="col-md-12">
+                <p>After creating your team, share the team name and password with your teammates so they can join your
+                    team.</p>
+                <input class="btn btn-success float-right" id="_submit" name="_submit" type="submit" value="Create">
+            </div>
+        </div>
+        <input id="nonce" name="nonce" type="hidden"
+            value="3aba76c88a9d14ca4a062fcf3c8af73d97af33ad8d5e7214e98a76b358c1d2e2">
+    </form>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}

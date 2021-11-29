@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>CTFd</title>
+    <title>MyCTFd</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../static/img/favicon.ico?d=a3e973b9" type="image/x-icon">
@@ -41,6 +41,50 @@
                 <hr class="d-sm-flex d-md-flex d-lg-none">
                 <ul class="navbar-nav ml-md-auto d-block d-sm-flex d-md-flex">
                     {%if user%}
+<li class="nav-item">
+    <a class="nav-link" href="/notifications">
+        <span class="d-block" data-toggle="tooltip" data-placement="bottom" title=""
+            data-original-title="Notifications">
+            <i class="fas fa-bell d-none d-md-block d-lg-none"></i>
+        </span>
+        <span class="d-sm-block d-md-none d-lg-block">
+            <i class="fas fa-bell pr-1"></i>
+            <span class="badge badge-pill badge-danger badge-notification"></span>
+            Notifications
+        </span>
+    </a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="/team">
+        <span class="d-block" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Team">
+            <i class="fas fa-users d-none d-md-block d-lg-none"></i>
+        </span>
+        <span class="d-sm-block d-md-none d-lg-block">
+            <i class="fas fa-users pr-1"></i>Team
+        </span>
+    </a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="/user">
+        <span class="d-block" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Profile">
+            <i class="fas fa-user-circle d-none d-md-block d-lg-none"></i>
+        </span>
+        <span class="d-sm-block d-md-none d-lg-block">
+            <i class="fas fa-user-circle pr-1"></i>Profile
+        </span>
+    </a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="/settings">
+        <span class="d-block" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Settings">
+            <i class="fas fa-cogs d-none d-md-block d-lg-none"></i>
+        </span>
+        <span class="d-sm-block d-md-none d-lg-block">
+            <i class="fas fa-cogs pr-1"></i>Settings
+        </span>
+    </a>
+</li>
+
                     <li class="nav-item">
                         <a class="nav-link" href="/logout">
                             <span class="d-block" data-toggle="tooltip" data-placement="bottom" title="Login">

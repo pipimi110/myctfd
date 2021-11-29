@@ -22,19 +22,14 @@ def register():
         name_count = (db.session.query(User.username)
             .filter(User.username == request.form['username'])
             .count())
-        email_count = (db.session.query(User.email)
-            .filter(User.email == request.form['email'])
-            .count())
-        if name_count == 0 and email_count == 0:
-            user = User(request.form['username'],request.form['email'],request.form['password'])
+        if name_count == 0:
+            user = User(request.form['username'],request.form['password'])
             db.session.add(user)
             db.session.commit()
             # return render_template('login.html', errors=errors)
             return redirect(url_for('userAuth.login'))
-        if name_count == 1:
+        else:
             errors.append("That user name is already taken")
-        if email_count == 1:
-            errors.append("That email has already been used")
     return render_template('register.html', errors=errors)
 
 @_userAuth.route('/login', methods=['GET', 'POST'])
