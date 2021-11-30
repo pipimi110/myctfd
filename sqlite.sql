@@ -14,18 +14,23 @@ create table challenge_topics(topic_id int primary key,cname char(20));
 insert into challenge_topics value(1,"xxxctf");
 
 drop table challenge;
-create table challenge(cid int,topic_id int DEFAULT 1,name char(20),category char(20),value int,desc char(40),flag char(40),solve_count int DEFAULT 0,primary key(cid,topic_id),foreign key(topic_id) references challenge_topics(topic_id));
-
+create table challenge(cid int DEFAULT 0,topic_id int DEFAULT 1,name char(20),category char(20),value int,desc char(40),flag char(40),solve_count int DEFAULT 0,primary key(cid,topic_id),foreign key(topic_id) references challenge_topics(topic_id));
+-- 触发器 实现cid自增
+CREATE TRIGGER addChallenge after insert on challenge begin update challenge set cid=(1+(select MAX(cid) from challenge)) where cid=new.cid;end;
 
 -- todo:触发器cid自增
 -- insert into challenge(name,category,value,desc,flag) values("web1","Web",100,"do you know ff12","flag{f12_is_easy}");
-insert into challenge(cid,name,category,value,desc,flag) values(1,"web1","Web",100,"do you know ff12","flag{f12_is_easy}");
-insert into challenge(cid,name,category,value,desc,flag) values(2,"web2","Web",100,"do you know ff12","flag{f13_is_easy}");
-insert into challenge(cid,name,category,value,desc,flag) values(3,"web3","Web",100,"do you know ff12","flag{f14_is_easy}");
-insert into challenge(cid,name,category,value,desc,flag) values(4,"signIn","Misc",100,"flag{xxx}","flag{xxx}");
+insert into challenge(name,category,value,desc,flag) values("web1","Web",100,"do you know ff12","flag{f12_is_easy}");
+insert into challenge(name,category,value,desc,flag) values("web2","Web",100,"do you know ff12","flag{f13_is_easy}");
+insert into challenge(name,category,value,desc,flag) values("web3","Web",100,"do you know ff12","flag{f14_is_easy}");
+insert into challenge(name,category,value,desc,flag) values("signIn","Misc",100,"flag{xxx}","flag{xxx}");
 -- 标记用户做的题目
 -- create table solve(topic_id int,uid int,score int,foreign key(topic_id) references challenge_topics(topic_id),foreign key(uid) references user_info(uid));
 create table solve(topic_id int DEFAULT 1,uid int,cid int,primary key(uid,cid),foreign key(topic_id) references challenge_topics(topic_id),foreign key(uid) references user_info(uid),foreign key(cid) references challenge(cid));
+-- 触发器
+create trigger addSolves after insert on solve begin update challenge set solve_count=solve_count+1 where cid=new.cid; end;
+
+
 --- 标记队伍做的题目
 -- create table teamsolve(topic_id int DEFAULT 1,tid int,cid int,foreign key(topic_id) references challenge_topics(topic_id),foreign key(tid) references team_info(tid),foreign key(cid) references challenge(cid));
 

@@ -48,6 +48,8 @@
     })
     modalBoxes.forEach(function (value, key) {
         value.init();
-    })
+    });
+    function $(id) { return document.getElementById(id); }
+    $("btnClick").onclick = function () { alert("我被激活啦！"); }
 })();
 

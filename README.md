@@ -367,7 +367,33 @@ select * from challenge;
 
 
 
+提交flag（1.js）
+
+```
+challenge-submit
+
+    function $(id) { return document.getElementById(id); }
+    $("btnClick").onclick = function () { alert("我被激活啦！"); }
+```
+
+```
+tests=document.getElementsByClassName("challenge-submit")
+for(test in tests){
+test.addEventListener("click",function(){
+    console.log("111");
+});
+}
+```
+
+
+
 ## todo:
+
+```
+加入队伍√
+提交flag
+得分统计
+```
 
 
 

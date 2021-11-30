@@ -3,6 +3,8 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 import os
 
+from sqlalchemy.sql.schema import ForeignKey
+
 app = Flask(__name__)
 # path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 path = os.path.dirname(os.path.abspath(__file__))
@@ -17,6 +19,8 @@ class User(db.Model):
     uid = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20), nullable=False)
     password = db.Column(db.String(20), nullable=False)
+    tid = db.Column(db.Integer)
+    
     
     def __init__(self, username, password):
         self.username = username

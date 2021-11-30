@@ -1,7 +1,6 @@
 from flask import Blueprint, redirect, url_for, render_template, session, request, flash
 # from app import app
-from models import Team
-from models import db
+from models import Team,db,User
 from userAuth import auth
 
 
@@ -28,6 +27,7 @@ def register():
             team = Team(request.form['teamname'], request.form['password'])
             db.session.add(team)
             db.session.commit()
+            
             # return render_template('login.html', errors=errors)
             return redirect(url_for('teamAuth.login'))
         else:
@@ -41,24 +41,21 @@ def login():
         return redirect(url_for('index.index'))
     errors = []
     if request.method == 'POST':
-        # print(request.form)
-        # if request.form!=None and request.form['teamname'] != app.config['USERNAME'] or request.form['password'] != app.config['PASSWORD']:
-        # if request.form['username'] != app.config['USERNAME'] or request.form['password'] != app.config['PASSWORD']:
-        # admin = User(username='admin123', password='qweqwe')
-        # print(db.session)
-        # print(db.session.query(User.username).all())
-        # print(db.session.query(User).filter(User.username == "admin123"))
-        count = (db.session.query(User.username)
-                 .filter(User.username == request.form['username'])
-                 .filter(User.password == request.form['password'])
-                 .count())
-
-        if count == 0:
-            errors.append('Invalid username or password')
-        else:
-            session['user'] = request.form['username']
-            flash('You were logged in')
-            return redirect(url_for('index.index'))
+        team_auth = (db.session.query(Team.tid)
+                 .filter(Team.teamname == request.form['name'])
+                 .filter(Team.password == request.form['password'])
+                 )
+        count = team_auth.count()
+        if count != 0:
+            # print(team_auth.one()[0])
+            db.session.query(User).filter(
+                User.username == session.get("user")
+            ).update({User.tid: team_auth.one()[0]})
+            db.session.commit()
+            # print(user)
+        # print(count)
+        # if count == 0:
+        errors.append('Invalid teamname or password')
     return render_template('team_login.html', errors=errors, user=session.get('user'))
 
 

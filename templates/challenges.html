@@ -34,7 +34,7 @@
         </div>
         <div class="category-challenges col-md-12">
             {% for challenge in category[key] %}
-            <div id=triggerBtn-{{challenge.id}} class="col-md-3 d-inline-block tag-密码学">
+            <div id=triggerBtn-{{challenge.cid}} class="col-md-3 d-inline-block tag-密码学">
                 <button class="btn btn-dark challenge-button w-100 text-truncate pt-3 pb-3 mb-2" value="2">
                 <!-- <button class="btn btn-success challenge-button w-100 text-truncate pt-3 pb-3 mb-2" value="2"> -->
                     <p>{{challenge.name}}</p><span>{{challenge.value}}</span>
