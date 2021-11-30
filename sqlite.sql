@@ -18,8 +18,6 @@ create table challenge(cid int DEFAULT 0,topic_id int DEFAULT 1,name char(20),ca
 -- 触发器 实现cid自增
 CREATE TRIGGER addChallenge after insert on challenge begin update challenge set cid=(1+(select MAX(cid) from challenge)) where cid=new.cid;end;
 
--- todo:触发器cid自增
--- insert into challenge(name,category,value,desc,flag) values("web1","Web",100,"do you know ff12","flag{f12_is_easy}");
 insert into challenge(name,category,value,desc,flag) values("web1","Web",100,"do you know ff12","flag{f12_is_easy}");
 insert into challenge(name,category,value,desc,flag) values("web2","Web",100,"do you know ff12","flag{f13_is_easy}");
 insert into challenge(name,category,value,desc,flag) values("web3","Web",100,"do you know ff12","flag{f14_is_easy}");

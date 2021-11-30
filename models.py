@@ -66,8 +66,55 @@ class Challenge(db.Model):
     def __repr__(self):
         return '<Challenge %r>' % self.name
 
+class Solve(db.Model):
+    __tablename__ = "solve"
+    topic_id = db.Column(db.Integer)
+    uid = db.Column(db.Integer, primary_key=True)
+    cid = db.Column(db.Integer, primary_key=True)
+
+    def __init__(self, uid, cid):
+        self.uid = uid
+        self.cid = cid
+
+    def __repr__(self):
+        return '<Solve %r>' % self.uid
 
 
+def userName2Tid(name):
+    mytid = db.session.query(User.tid).filter(
+        User.username == name).one()[0]
+    return mytid
+
+def tid2TeamUidList(tid):
+    teammate_tuples = db.session.query(
+        User.uid).filter(User.tid == tid).all()
+    uids = []
+    for tuple in teammate_tuples:
+        # print(tuple[0])
+        uids.append(tuple[0])
+    return uids
+
+def userName2TeamUidList(name):
+    mytid = userName2Tid(name)
+    # print(mytid)
+    uids = tid2TeamUidList(mytid)
+    return uids
+
+def uids2SolveCids(uids):
+    solveCids = []
+    teamsolve_tuples = db.session.query(Solve.cid).filter(Solve.uid.in_(uids)).all()
+    for tuple in teamsolve_tuples:
+        # print()
+        solveCids.append(tuple[0])
+    return solveCids
+
+
+def solveCids2ValueSum(solveCids):
+    sum = 0
+    for cid in solveCids:
+        value = db.session.query(Challenge.value).filter(Challenge.cid==cid).one()[0]
+        sum += value
+    return sum
 # def init_db():
 #     db.create_all()
 #     # Create a test user

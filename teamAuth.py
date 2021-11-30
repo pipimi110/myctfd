@@ -55,7 +55,8 @@ def login():
             # print(user)
         # print(count)
         # if count == 0:
-        errors.append('Invalid teamname or password')
+        else:
+            errors.append('Invalid teamname or password')
     return render_template('team_login.html', errors=errors, user=session.get('user'))
 
 

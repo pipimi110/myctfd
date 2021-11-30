@@ -49,7 +49,30 @@
     modalBoxes.forEach(function (value, key) {
         value.init();
     });
-    function $(id) { return document.getElementById(id); }
-    $("btnClick").onclick = function () { alert("我被激活啦！"); }
+
+    function submit_flag(cid, flag) {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                console.log(xmlhttp.responseText);
+            }
+        }
+        xmlhttp.open("POST", "/flag", true);
+        xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xmlhttp.send(`cid=${cid}&flag=${flag}`);
+    }
+    
+    var elements = document.getElementsByClassName("challenge-submit");
+    for (var i = 0; i < elements.length; i++) {
+        elements[i].onclick = function () {
+            cid = this.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement["id"].substring("myModel-".length);
+            flag = this.parentElement.parentElement.firstElementChild.children[1].value;
+            //console.log(cid);
+            //console.log(flag);
+            //console.log(123)//this.style.display="block";
+            submit_flag(cid, flag);
+        };
+    }
+
 })();
 

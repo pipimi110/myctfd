@@ -35,6 +35,8 @@ from userAuth import _userAuth
 app.register_blueprint(_userAuth)
 from teamAuth import _teamAuth
 app.register_blueprint(_teamAuth)
+from flagAuth import _flagAuth
+app.register_blueprint(_flagAuth)
 from challenges import _challenges
 app.register_blueprint(_challenges)
 from scoreboard import _scoreboard
