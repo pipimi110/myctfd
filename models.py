@@ -47,7 +47,7 @@ class Team(db.Model):
 
 class Challenge(db.Model):
     __tablename__ = "challenge"
-    cid = db.Column(db.Integer, primary_key=True)
+    cid = db.Column(db.Integer,default=0, primary_key=True)
     topic_id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(20))
     category = db.Column(db.String(20))

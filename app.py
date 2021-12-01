@@ -45,7 +45,8 @@ from teams import _teams
 app.register_blueprint(_teams)
 from users import _users
 app.register_blueprint(_users)
-
+from insertchallenge import _ichallenge
+app.register_blueprint(_ichallenge)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host="0.0.0.0",port=10300,debug=True)

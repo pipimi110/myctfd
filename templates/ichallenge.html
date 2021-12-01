@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+
+{% block stylesheets %}
+{% endblock %}
+
+{% block content %}
+<div class="jumbotron">
+    <div class="container">
+        <h1>insert challenge</h1>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            {% include "components/errors.html" %}
+
+<form method="post" accept-charset="utf-8" autocomplete="off" role="form">
+	<!-- #cid topics_id challenge_name category score description flag solvecount-->
+    <!--<div class="form-group">
+        <b><label for="cid">Cid</label></b>
+        <input class="form-control input-filled-valid" id="cid" name="cid" required="" type="text" value="0">
+        <small class="form-text text-muted">
+            cid is 0
+        </small>
+    </div>
+    <div class="form-group">
+        <b><label for="topics_id">topics_id</label></b>
+        <input class="form-control input-filled-valid" id="topics_id" name="topics_id" required="" type="text" value="1">
+        <small class="form-text text-muted">
+            topics_id
+        </small>
+    </div>-->
+    <div class="form-group">
+        <b><label for="name">name</label></b>
+        <input class="form-control input-filled-valid" id="name" name="name" required="" type="text" value="">
+        <small class="form-text text-muted">
+            challenge name
+        </small>
+    </div>
+    <div class="form-group">
+        <b><label for="category">category</label></b>
+        <input class="form-control input-filled-valid" id="category" name="category" required="" type="text" value="">
+        <small class="form-text text-muted">
+            category
+        </small>
+    </div>
+    <div class="form-group">
+        <b><label for="value">value</label></b>
+        <input class="form-control input-filled-valid" id="value" name="value" required="" type="text" value="">
+        <small class="form-text text-muted">
+            Your challenge value
+        </small>
+    </div>
+    <div class="form-group">
+        <b><label for="description">description</label></b>
+        <input class="form-control input-filled-valid" id="desc" name="desc" required="" type="text" value="">
+        <small class="form-text text-muted">
+            Your challenge description
+        </small>
+    </div>
+    <div class="form-group">
+        <b><label for="flag">flag</label></b>
+        <input class="form-control input-filled-valid" id="flag" name="flag" required="" type="text" value="">
+        <small class="form-text text-muted">
+            Your secret flag
+        </small>
+    </div>
+    <!--<div class="form-group">
+        <b><label for="solvecount">solvecount</label></b>
+        <input class="form-control input-filled-valid" id="solve_count" name="solve_count" required="" type="text" value="0">
+        <small class="form-text text-muted">
+            solvecount
+        </small>
+    </div>
+    -->
+    <input id="nonce" name="nonce" type="hidden"
+        value="5db25f283395bc0fc7fef55ab57f8732d3b593ad2ced66840d74575472b27c4e">
+
+    <div class="row pt-3">
+        <div class="col-md-12">
+            <input class="btn btn-md btn-primary btn-outlined float-right" id="_submit" name="_submit" type="submit"
+                value="Submit">
+        </div>
+    </div>
+
+
+</form>
+
+
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}
