@@ -42,11 +42,9 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <td><b>Challenge</b></td>
+                    <td><b>challenge</b></td>
                     <!-- <td><b>cid</b></td>
                     <td class="d-none d-md-table-cell d-lg-table-cell"><b>Affiliation</b></td>-->
-                    <td class="d-none d-md-table-cell d-lg-table-cell"><b>Category</b></td>
-		    <td class="d-none d-md-table-cell d-lg-table-cell"><b>solve_countd</b></td>
                     <td class="d-none d-md-table-cell d-lg-table-cell"><b>Cid</b></td>
                 </tr>
             </thead>
@@ -56,17 +54,13 @@
                     <td>
                         <a href="/challenges/{{challenge.name}}">{{challenge.name}}</a>
                     </td>
-                    <td class="d-none d-md-table-cell d-lg-table-cell">
-                        <span>
-                        {{challenge.category}}
-                        </span>
+                    <!--<td class="text-center" style="width: 10px;">
+                        {{team.website}}
                     </td>
                     <td class="d-none d-md-table-cell d-lg-table-cell">
-                        <span>
-                        {{challenge.solve_count}}
-                        </span>
-                    </td>
-		    <td class="d-none d-md-table-cell d-lg-table-cell">
+                        {{team.affiliation}}
+                    </td>-->
+                    <td class="d-none d-md-table-cell d-lg-table-cell">
                         <span>
                         {{challenge.cid}}
                         </span>

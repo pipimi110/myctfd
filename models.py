@@ -54,7 +54,7 @@ class Challenge(db.Model):
     value = db.Column(db.Integer)
     desc = db.Column(db.String(40))
     flag = db.Column(db.String(40))
-    solve_count = db.Column(db.Integer)
+    solve_count = db.Column(db.Integer,default=0)
 
     def __init__(self, name, category, value, desc, flag):
         self.name = name
@@ -68,7 +68,7 @@ class Challenge(db.Model):
 
 class Solve(db.Model):
     __tablename__ = "solve"
-    topic_id = db.Column(db.Integer)
+    topic_id = db.Column(db.Integer,default=1)
     uid = db.Column(db.Integer, primary_key=True)
     cid = db.Column(db.Integer, primary_key=True)
 

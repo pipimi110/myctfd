@@ -13,12 +13,13 @@ def teams():
     # team2 = {"id": 2, "name": "team2", "score": 10, "rank": 2}
     # team3 = {"id": 3, "name": "team3", "score": 10, "rank": 3}
     # teams = [team1, team2, team3]
-    if request.args.get("field") != None and request.args.get("q") != None:
+    '''if request.args.get("field") != None and request.args.get("q") != None:
         print(request.args.get("q"))
         teams = db.session.query(Team).filter(
             Team.username.like('%'+request.args.get("q")+'%')
         ).all()
     else:
         teams = db.session.query(Team).all()
-        print(teams)
+        print(teams)'''
+    teams=db.session.query(Team).all()
     return render_template("teams.html", user=session.get('user'), teams=teams)
