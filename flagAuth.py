@@ -43,4 +43,6 @@ def flag_check():
                 status = {"res": "flag success"}
     # return render_template('flagAuth.html', user=session.get('user'))
     print(status)
-    return json.dumps(status)
+    return redirect(url_for('challenges.challenges'))
+    #return render_template('challenge.html',user=session.get('user'))
+   # return json.dumps(status)
