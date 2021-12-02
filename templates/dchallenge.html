@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block stylesheets %}
+{% endblock %}
+
+{% block content %}
+<div class="jumbotron">
+    <div class="container">
+        <h1>delete challenge</h1>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            {% include "components/errors.html" %}
+
+<form method="post" accept-charset="utf-8" autocomplete="off" role="form">
+    <!-- #cid topics_id challenge_name category score description flag solvecount-->
+    <div class="form-group">
+        <b><label for="cid">Cid</label></b>
+        <input class="form-control input-filled-valid" id="cid" name="cid" required="" type="text" value="0">
+        <small class="form-text text-muted">
+            delete challenge cid
+        </small>
+    </div>
+
+    <input id="nonce" name="nonce" type="hidden"
+        value="5db25f283395bc0fc7fef55ab57f8732d3b593ad2ced66840d74575472b27c4e">
+
+    <div class="row pt-3">
+        <div class="col-md-12">
+            <input class="btn btn-md btn-primary btn-outlined float-right" id="_submit" name="_submit" type="submit"
+                value="Submit">
+        </div>
+    </div>
+
+
+</form>
+
+
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}

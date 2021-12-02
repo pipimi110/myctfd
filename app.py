@@ -47,6 +47,9 @@ from users import _users
 app.register_blueprint(_users)
 from insertchallenge import _ichallenge
 app.register_blueprint(_ichallenge)
+from deletechallenge import _dchallenge
+app.register_blueprint(_dchallenge)
+
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0",port=10300,debug=True)
