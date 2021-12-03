@@ -19,12 +19,18 @@ class User(db.Model):
     uid = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20), nullable=False)
     password = db.Column(db.String(20), nullable=False)
+    website = db.Column(db.String(60), nullable=False)
+    affiliation = db.Column(db.String(60), nullable=False)
+    country = db.Column(db.String(20), nullable=False)
     tid = db.Column(db.Integer)
 
 
-    def __init__(self, username, password):
+    def __init__(self, username, password,website,affiliation,country):
         self.username = username
         self.password = password
+        self.website = website
+        self.affiliation = affiliation
+        self.country = country
 
     def __repr__(self):
         return '<User %r>' % self.username

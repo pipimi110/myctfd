@@ -23,7 +23,7 @@ def register():
             .filter(User.username == request.form['username'])
             .count())
         if name_count == 0:
-            user = User(request.form['username'],request.form['password'])
+            user = User(request.form['username'],request.form['password'],request.form['website'],request.form['affiliation'],request.form['country'])
             db.session.add(user)
             db.session.commit()
             # return render_template('login.html', errors=errors)

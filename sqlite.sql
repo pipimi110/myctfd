@@ -8,7 +8,7 @@ drop table test;
 
 create table team_info(tid INTEGER primary key autoincrement,teamname char(20) unique not NULL,password char(20) not NULL,website char(20),affiliation char(20),country char(20));
 
-create table user_info(uid INTEGER primary key autoincrement,username char(20) unique not NULL,password char(20) not NULL,tid int,foreign key(tid) references team_info(tid));
+create table user_info(uid INTEGER primary key autoincrement,username char(20) unique not NULL,password char(20) not NULL,website char(60) not NULL,affiliation char(60) not NULL,country char(60) not NULL,tid int,foreign key(tid) references team_info(tid));
 
 create table challenge_topics(topic_id int primary key,cname char(20));
 insert into challenge_topics value(1,"xxxctf");

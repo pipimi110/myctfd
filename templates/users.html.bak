@@ -49,24 +49,30 @@
                 </thead>
                 <tbody>
                     {% for user in users %}
-                    <tr>
+		    {% if user.username != "admin" %}
+
+		    <tr>
                         <td>
-                            <a href="/users/{{user.id}}">
+                            <a>
                                 {{user.username}}
                             </a>
                         </td>
                         <td class="text-center" style="width: 10px;">
-                            {{user.website}}
+                        {{user.Website}}
                         </td>
                         <td class="d-none d-md-table-cell d-lg-table-cell">
-                            {{user.affiliation}}
+                            {{user.Affiliation}}
                         </td>
                         <td class="d-none d-md-table-cell d-lg-table-cell">
                             <span>
-                                {{user.country}}
+                                {{user.Country}}
                             </span>
                         </td>
                     </tr>
+
+		    {% else %}
+		    {% endif %}
+
                     {% endfor %}
 
                 </tbody>

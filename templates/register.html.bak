@@ -17,44 +17,20 @@
 <form method="post" accept-charset="utf-8" autocomplete="off" role="form">
     <div class="form-group">
         <b><label for="name">User Name</label></b>
-        <input class="form-control input-filled-valid" id="username" name="username" required="" type="text" value="">
+        <input class="form-control input-filled-valid" id="username" name="username" required="" type="text" value="qwe">
         <small class="form-text text-muted">
             Your username on the site
         </small>
     </div>
     <div class="form-group">
         <b><label for="password">Password</label></b>
-        <input class="form-control input-filled-valid" id="password" name="password" required="" type="password" value="">
+        <input class="form-control" id="password" name="password" required="" type="password" value="123123">
         <small class="form-text text-muted">
             Password used to log into your account
         </small>
     </div>
     <input id="nonce" name="nonce" type="hidden"
         value="5db25f283395bc0fc7fef55ab57f8732d3b593ad2ced66840d74575472b27c4e">
-
-    <div class="form-group">
-        <b><label for="website">Website</label></b>
-        <input class="form-control input-filled-valid" id="website" name="website" required="" type="text" value="">
-        <small class="form-text text-muted">
-            Your website
-        </small>
-    </div>
-
-    <div class="form-group">
-        <b><label for="affiliation">Affiliation</label></b>
-        <input class="form-control input-filled-valid" id="affiliation" name="affiliation" required="" type="text" value="">
-        <small class="form-text text-muted">
-            Your affiliation
-        </small>
-    </div>
-
-    <div class="form-group">
-        <b><label for="country">country</label></b>
-        <input class="form-control input-filled-valid" id="country" name="country" required="" type="text" value="">
-        <small class="form-text text-muted">
-            Your country
-        </small>
-    </div>
 
     <div class="row pt-3">
         <div class="col-md-12">
