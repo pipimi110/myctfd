@@ -49,9 +49,10 @@
                 </thead>
                 <tbody>
                     {% for user in users %}
+		    {% if user.username != "admin" %}
                     <tr>
                         <td>
-                            <a href="/users/{{user.id}}">
+                            <a>
                                 {{user.username}}
                             </a>
                         </td>
@@ -67,6 +68,9 @@
                             </span>
                         </td>
                     </tr>
+		    {% else %}
+		    {% endif %}
+
                     {% endfor %}
 
                 </tbody>
