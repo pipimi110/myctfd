@@ -1,9 +1,9 @@
 from flask import Blueprint, redirect, url_for, render_template, session, request
 from userAuth import auth
-from models import Team,db
+from models import Team,db,User
 
 _teams = Blueprint('teams', __name__)
-
+_teams_user=Blueprint('showteam_user', __name__)
 
 @_teams.route('/teams', methods=['GET', 'POST'])
 def teams():
@@ -23,3 +23,11 @@ def teams():
         print(teams)'''
     teams=db.session.query(Team).all()
     return render_template("teams.html", user=session.get('user'), teams=teams)
+
+
+
+@_teams_user.route('/teams/<int:tid>', methods=['GET', 'POST'])
+def showteam_user(tid):
+    teamsuser=db.session.query(User).filter(User.tid==tid)
+    return render_template("showteam_user.html",user=session.get('user'),teamsuser=teamsuser)
+

@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="jumbotron">
+    <div class="container">
+        <h1>Teams user</h1>
+    </div>
+</div>
+<div class="container">
+    {% include "components/errors.html" %}
+
+    <!-- <div id="score-graph" class="row d-flex align-items-center">
+        <div class="col-md-12 text-center">
+            <i class="fas fa-circle-notch fa-spin fa-3x fa-fw spinner"></i>
+        </div>
+    </div> -->
+    <div class="col-md-12">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <td><b>uid</b></td>
+                    <td><b>username</b></td>
+                    <!--<td class="d-none d-md-table-cell d-lg-table-cell"><b>Affiliation</b></td>
+                    <td class="d-none d-md-table-cell d-lg-table-cell"><b>Country</b></td>-->
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in teamsuser %}
+                <tr>
+                    <td>
+                        {{user.uid}}
+                    </td>
+                    <td class="text-center" style="width: 10px;">
+                        {{user.username}}
+                    </td>
+                    <!--<td class="d-none d-md-table-cell d-lg-table-cell">
+                    </td>
+                    <td class="d-none d-md-table-cell d-lg-table-cell">
+                        <span>
+                        </span>
+                    </td>-->
+                </tr>
+                {% endfor %}
+    
+            </tbody>
+        </table>
+    </div>
+
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script defer src="../static/js/echarts.bundle.js"></script>
+{% endblock %}
+
+{% block entrypoint %}
+<script defer src="../static/js/pages/scoreboard.js"></script>
+{% endblock %}
