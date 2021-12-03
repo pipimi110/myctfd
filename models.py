@@ -9,7 +9,7 @@ app = Flask(__name__)
 # path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 path = os.path.dirname(os.path.abspath(__file__))
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///{path}/myctfd.db'.format(
-    path=path)
+        path=path)
 db = SQLAlchemy(app)
 
 
@@ -20,8 +20,8 @@ class User(db.Model):
     username = db.Column(db.String(20), nullable=False)
     password = db.Column(db.String(20), nullable=False)
     tid = db.Column(db.Integer)
-    
-    
+
+
     def __init__(self, username, password):
         self.username = username
         self.password = password
@@ -38,9 +38,12 @@ class Team(db.Model):
     affiliation = db.Column(db.String(20))
     country = db.Column(db.String(20))
 
-    def __init__(self, teamname, password):
+    def __init__(self, teamname, password,website,affiliation, country):
         self.teamname = teamname
         self.password = password
+        self.website = website
+        self.affiliation = affiliation
+        self.country = country
 
     def __repr__(self):
         return '<Team %r>' % self.teamname
@@ -82,12 +85,12 @@ class Solve(db.Model):
 
 def userName2Tid(name):
     mytid = db.session.query(User.tid).filter(
-        User.username == name).one()[0]
+            User.username == name).one()[0]
     return mytid
 
 def tid2TeamUidList(tid):
     teammate_tuples = db.session.query(
-        User.uid).filter(User.tid == tid).all()
+            User.uid).filter(User.tid == tid).all()
     uids = []
     for tuple in teammate_tuples:
         # print(tuple[0])

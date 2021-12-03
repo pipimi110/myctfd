@@ -24,7 +24,7 @@ def register():
                       .filter(Team.teamname == request.form['teamname'])
                       .count())
         if name_count == 0:
-            team = Team(request.form['teamname'], request.form['password'])
+            team = Team(request.form['teamname'], request.form['password'],request.form['website'],request.form['affiliation'],request.form['country'])
             db.session.add(team)
             db.session.commit()
             
